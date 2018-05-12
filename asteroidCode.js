@@ -1,10 +1,11 @@
 var ship;
 var asteroids = [];
 var lasers = [];
-var game = true;
+var game = false;
 var score = 0;
 var saucers = [];
 var saucerL = [];
+var m;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -13,9 +14,19 @@ function setup() {
     asteroids.push(new Asteroid());
     checkStartDA(i);
   }
+  background(0);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(width / 8);
+  textFont('Courier');
+  text("Asteroids", width / 2, height / 4);
+  textSize(width / 48);
+  text("Press \"R\" to start\n\"W\" or up-arrow to accelerate\n\"A\" or right-arrow to turn right\n\"D\" or left-arrow to turn left\n\"S\" or space to shoot", width / 2, height / 2);
+  game = false;
 }
 
 function draw() {
+  m = millis();
   if(game) {
     background(0);
     for(var i = asteroids.length - 1; i >= 0; i--) {
@@ -136,6 +147,19 @@ function draw() {
 
     showScore();
     showLife(ship.life);
+    if(m % 10000 <= 20) {
+      saucers.push(new Saucer());
+      checkStartDS(saucers.length - 1);
+    }
+    if(m % 1000 <= 20) {
+      for (var i = saucers.length - 1; i >= 0; i--){
+        saucers[i].fire(i);
+      }
+    }
+    if(m % 5000 <= 20) {
+      asteroids.push(new Asteroid());
+      checkStartDA(asteroids.length - 1);
+    }
   }
 }
 
@@ -213,49 +237,45 @@ function resetShip() {
 }
 
 function gameOver() {
-  clearInterval(intervalS);
-  clearInterval(intervalA);
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(width / 8);
   textFont('Courier');
-  text("Game Over", width / 2, height / 2);
+  text("Game Over", width / 2, height / 4);
+  textSize(width / 48);
+  text("Press \"R\" to restart\n\"W\" or up-arrow to accelerate\n\"A\" or right-arrow to turn right\n\"D\" or left-arrow to turn left\n\"S\" or space to shoot", width / 2, height / 2);
   game = false;
 }
 
 function keyReleased() {
-  if (keyCode == RIGHT_ARROW || keyCode == LEFT_ARROW) {
+  if (keyCode == RIGHT_ARROW || keyCode == LEFT_ARROW || key == 'D' || key == 'A') {
     ship.setRotation(0);
   }
-  if (keyCode == UP_ARROW) {
+  if (keyCode == UP_ARROW || key == 'W') {
     ship.boosting(false);
   }
 }
 
 function keyPressed() {
-  if (key == ' ') {
+  if (key == ' ' || key == 'S') {
     lasers.push(new Laser(ship.pos, ship.heading));
-  } else if (keyCode == RIGHT_ARROW) {
+  } else if (keyCode == RIGHT_ARROW || key == 'D') {
     ship.setRotation(0.1);
-  } else if (keyCode == LEFT_ARROW) {
+  } else if (keyCode == LEFT_ARROW || key == 'A') {
     ship.setRotation(-0.1);
-  } else if (keyCode == UP_ARROW) {
+  } else if (keyCode == UP_ARROW || key == 'W') {
     ship.boosting(true);
+  }if (key == 'R' && game === false) {
+    asteroids = [];
+    lasers = [];
+    score = 0;
+    saucers = [];
+    saucerL = [];
+    ship = new Ship();
+    for (var i = 0; i < 5; i++) {
+      asteroids.push(new Asteroid());
+      checkStartDA(i);
+    }
+    game = true;
   }
 }
-
-intervalA = setInterval(function() {
-  asteroids.push(new Asteroid());
-  checkStartDA(asteroids.length - 1);
-}, 10000);
-
-intervalS = setInterval(function() {
-  saucers.push(new Saucer());
-  checkStartDS(saucers.length - 1);
-}, 20000);
-
-intervalF = setInterval(function() {
-  for (var i = saucers.length - 1; i >= 0; i--){
-    saucers[i].fire(i);
-  }
-}, 1000);
