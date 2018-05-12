@@ -10,7 +10,7 @@ var m;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   ship = new Ship();
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 3; i++) {
     asteroids.push(new Asteroid());
     checkStartDA(i);
   }
@@ -147,7 +147,7 @@ function draw() {
 
     showScore();
     showLife(ship.life);
-    if(m % 10000 <= 20) {
+    if(m % 20000 <= 20) {
       saucers.push(new Saucer());
       checkStartDS(saucers.length - 1);
     }
@@ -156,7 +156,7 @@ function draw() {
         saucers[i].fire(i);
       }
     }
-    if(m % 5000 <= 20) {
+    if(m % 10000 <= 20) {
       asteroids.push(new Asteroid());
       checkStartDA(asteroids.length - 1);
     }
