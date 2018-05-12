@@ -1,4 +1,3 @@
-@@ -0,0 +1,57 @@
  function setup() {
    createCanvas(window.innerWidth, window.innerHeight);
    angleMode(DEGREES);
