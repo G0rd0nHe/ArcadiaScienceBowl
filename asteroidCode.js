@@ -272,7 +272,7 @@ function keyPressed() {
     saucers = [];
     saucerL = [];
     ship = new Ship();
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 3; i++) {
       asteroids.push(new Asteroid());
       checkStartDA(i);
     }
