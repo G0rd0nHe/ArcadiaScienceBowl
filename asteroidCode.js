@@ -166,11 +166,11 @@ function checkStartDS(number) {
 }
 
 function showScore() {
-      fill(255);
-      textAlign(LEFT, TOP);
-      textSize(width / 48);
-      textFont('Courier');
-      text("score: " + score, 16, 0);
+//       fill(255);
+//       textAlign(LEFT, TOP);
+//       textSize(width / 48);
+//       textFont('Courier');
+//       text("score: " + score, 16, 0);
 }
 
 function showLife(life) {
