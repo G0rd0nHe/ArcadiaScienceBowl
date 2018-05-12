@@ -170,7 +170,7 @@ function showScore() {
       textAlign(LEFT, TOP);
       textSize(width / 48);
       textFont('Courier');
-      text("score: " + score, 0, 0);
+      text("score: " + score, 2, 2);
 }
 
 function showLife(life) {
