@@ -21,7 +21,7 @@
 		var ctx = canvas.getContext('2d');
 		var blockSize, widthInBlocks, heightInBlocks;
 		var score = 0;
-		var animationTime = 80;
+		var animationTime = 60;
 		var game = false;
 		var gameOverInit = false;
 		var timeoutId;
@@ -33,7 +33,7 @@
 			init();
 		});
 		function init() {
-			blockSize = 20;
+			blockSize = 10;
 			widthInBlocks = canvas.width / blockSize;
 			heightInBlocks = canvas.height / blockSize;
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
