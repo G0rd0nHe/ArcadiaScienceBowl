@@ -21,20 +21,19 @@
 		var ctx = canvas.getContext('2d');
 		var blockSize, widthInBlocks, heightInBlocks;
 		var score = 0;
-		var animationTime = 60;
-		var blocks = 42;
+		var animationTime = 80;
 		var game = false;
 		var gameOverInit = false;
 		var timeoutId;
 		var first = true;
 		gameLoop();
 		window.addEventListener('resize', function() {
-			canvas.width = Math.min(window.innerWidth, window.innerHeight) - 10;
-			canvas.height = Math.min(window.innerWidth, window.innerHeight) - 10;
+			canvas.width = 740;
+			canvas.height = 560;
 			init();
 		});
 		function init() {
-			blockSize = 10;
+			blockSize = 20;
 			widthInBlocks = canvas.width / blockSize;
 			heightInBlocks = canvas.height / blockSize;
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
