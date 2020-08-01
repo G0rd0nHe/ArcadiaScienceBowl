@@ -19,7 +19,7 @@ function setup() {
   // noStroke();
   // text('train', 100, 200);
 
-  var points = font.textToPoints('train', 100, 200, 192, {
+  var points = font.textToPoints('Arcadia\nScience Bowl', 100, 200, 192, {
     sampleFactor: 0.25
   });
 
