@@ -16,7 +16,7 @@ function preload() {
 
 function convertWord(text, x, y, size) {
   var points = font.textToPoints(text, x, y, size, {
-    sampleFactor: 0.25
+    sampleFactor: 0.3
   });
 
   for (var i = 0; i < points.length; i++) {
